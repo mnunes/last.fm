@@ -1,6 +1,3 @@
-# http://mainstream.ghan.nl/scrobbles.html
-# https://benjaminbenben.com/lastfm-to-csv/
-
 # pacotes necessários
 
 library(tidyverse)
@@ -8,6 +5,8 @@ theme_set(theme_bw())
 library(lubridate)
 library(stringi)
 library(plotly)
+library(knitr)
+library(kableExtra)
 
 # leitura dos dados
 
@@ -49,43 +48,46 @@ last.fm$musica  <- gsub("&", "and", last.fm$musica)
 
 last.fm$artista <- gsub("Jupiter Maca", "Jupiter Apple", last.fm$artista)
 
-
 # artistas mais ouvidos
 
 last.fm %>% 
   group_by(artista) %>%
   count() %>%
   arrange(desc(n)) %>%
-  print(n=50)
+  head(n=20) %>%
+  kable()
 
 # musicas mais ouvidas
 
 last.fm %>% 
   group_by(musica, artista) %>%
   count() %>%
-  arrange(desc(n))
+  arrange(desc(n)) %>%
+  head(n=20) %>%
+  kable()
 
 # albuns mais ouvidos
 
 last.fm %>% 
   group_by(album, artista) %>%
   count() %>%
-  arrange(desc(n))
+  arrange(desc(n)) %>%
+  head(n=20) %>%
+  kable()
 
-
-####################################
+#####################################
 # objeto com os artistas mais ouvidos
 
 top_artistas <- last.fm %>% 
   group_by(artista) %>%
   count() %>%
   arrange(desc(n)) %>%
-  head(20) %>% # quantidade de artistas
+  head(15) %>% # quantidade de artistas
   select(artista)
 
 top_artistas <- apply(top_artistas, 1, as.character)
 
-# audicoes cumulativas dos top 10 artistas
+# audicoes cumulativas dos top 15 artistas
 
 grafico <- last.fm %>% 
   filter(artista %in% top_artistas) %>%
@@ -100,8 +102,6 @@ grafico <- last.fm %>%
 
 ggplotly(grafico, tooltip="text")
 
-
-####################################
 # objeto com as musicas mais ouvidas
 
 top_musicas <- last.fm %>% 
@@ -127,6 +127,3 @@ grafico <- last.fm %>%
   labs(x="Ano", y="Número de Execuções", colour="Música")
 
 ggplotly(grafico, tooltip="text")
-
-
-

@@ -1,7 +1,6 @@
 # http://mainstream.ghan.nl/scrobbles.html
 # https://benjaminbenben.com/lastfm-to-csv/
 
-
 # pacotes necessários
 
 library(tidyverse)

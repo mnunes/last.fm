@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1549471477501.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2203541475",
+    "id" : "265E57DB",
+    "lastKnownWriteTime" : 1549471842,
+    "last_content_update" : 1549471842331,
+    "path" : "~/Documents/Research/github/last.fm/last.fm.R",
+    "project_path" : "last.fm.R",
+    "properties" : {
+        "cursorPosition" : "96,50",
+        "scrollLine" : "88"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
